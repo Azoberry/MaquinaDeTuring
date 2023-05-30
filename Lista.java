@@ -27,7 +27,6 @@ public class Lista {
     }
 
     // El método empty() devuelve true si la lista está vacía
-    // (es decir, si raiz es null), y false en caso contrario.
     public boolean empty() {
         return raiz == null;
     }
