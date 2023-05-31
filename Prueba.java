@@ -1,4 +1,5 @@
 import java.util.Scanner;
+import java.io.File;
 
 public class Prueba {
     public static void main(String[] args) {
@@ -38,13 +39,19 @@ public class Prueba {
     //     System.out.println("Escribir: " + transicion.getEscribir());
     //     System.out.println("Movimiento: " + transicion.getMovimiento());
 
-    Lista lista = new Lista();
-    for(int i = 0; i < 10; i++) {
-        lista.insertar2();
-    }
+    // Lista lista = new Lista();
+    // for(int i = 0; i < 10; i++) {
+    //     lista.insertar2();
+    // }
     
-    lista.imprimir();
+    // lista.imprimir();
     sc.close();
+
+    String rutaComplemento = "MT_complemento.txt";
+    File archivoComplemento = new File(rutaComplemento);
+
+    MDT mdt = new MDT(archivoComplemento);
+    mdt.imprimirMDT();
 
     }
 }
