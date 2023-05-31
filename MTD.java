@@ -5,33 +5,37 @@ import java.io.IOException;
 import java.util.HashSet;
 import java.util.Set;
 
-public class AFD {
+public class MDT {
 
 	private String[] alfabeto;
-	private int noEst;
+	private String[] alfabetoComp;
+ 	private int noEst;
 	private int[] estFin;
-	private int[][] tabla;
-	private String nom = "";
-	private String dir;
+	private Transicion[][] tabla;
+	//private String nom = "";
+	//private String dir;
+	//JIJIJIJA
 
 	
 	Set<String> setAlfabeto = new HashSet<>();
 	int estados = 0;
 
-	public AFD(String[] alfabeto, int noEst, int[] estFin, int[][] tabla, String dir) {
+	//public MDT(String[] alfabeto, int noEst, int[] estFin, int[][] tabla, String dir) {
+	public MDT(String[] alfabeto, int noEst, String[] alfabetoComp,int[] estFin, Transicion[][] tabla) {
 		super();
 		this.alfabeto = alfabeto;
 		this.noEst = noEst;
+		this.alfabetoComp=alfabetoComp;
 		this.estFin = estFin;
 		this.tabla = tabla;
-		this.dir = dir;
+		//this.dir = dir;
 	}
 
-	public AFD() {
+	public MDT() {
 
 	}
 
-	public AFD(String txt) {
+	public MDT(String txt) {
 		llenarAFD(txt);
 	}
 
@@ -41,6 +45,14 @@ public class AFD {
 
 	public void setAlfabeto(String[] alfabeto) {
 		this.alfabeto = alfabeto;
+	}
+
+	public String[] getAlfabetoComp() {
+		return alfabetoComp;
+	}
+
+	public void setAlfabetoComp(String[] alfabetoComp) {
+		this.alfabetoComp = alfabetoComp;
 	}
 
 	public int getNoEst() {
@@ -59,29 +71,29 @@ public class AFD {
 		this.estFin = estFin;
 	}
 
-	public int[][] getTabla() {
+	public Transicion[][] getTabla() {
 		return tabla;
 	}
 
-	public void setTabla(int[][] tabla) {
+	public void setTabla(Transicion[][] tabla) {
 		this.tabla = tabla;
 	}
 
-	public String getNom() {
-		return nom;
-	}
+	// public String getNom() {
+	// 	return nom;
+	// }
 
-	public void setNom(String nom) {
-		this.nom = nom;
-	}
+	// public void setNom(String nom) {
+	// 	this.nom = nom;
+	// }
 
-	public String getDir() {
-		return dir;
-	}
+	// public String getDir() {
+	// 	return dir;
+	// }
 
-	public void setDir(String dir) {
-		this.dir = dir;
-	}
+	// public void setDir(String dir) {
+	// 	this.dir = dir;
+	// }
 
 	public String concatAlfa() {
 		String concat = "";
@@ -99,16 +111,21 @@ public class AFD {
 		// Aux se usa para las iteraciones en los ciclos for, para que se puedan usar
 		// afuera del ciclo
 		int aux;
-		System.out.println("AFD: " + getNom());
-		System.out.println("Direccion: " + dir);
+		// System.out.println("AFD: " + getNom());
+		// System.out.println("Direccion: " + dir);
 		System.out.print("alfabeto:");
 		// Imprime todos los elementos del alfabeto menos el ultimo, para que no se
 		// muestre la coma al final
 		for (aux = 0; aux < alfabeto.length - 1; aux++) {
 			System.out.print(alfabeto[aux] + ",");
 		}
-		// Imprime el ultimo elemento del alfabeto
 		System.out.print(alfabeto[aux]);
+		System.out.println("alfabeto Completo:");
+		for (aux = 0; aux < alfabetoComp.length - 1; aux++) {
+			System.out.print(alfabetoComp[aux] + ",");
+		}
+		// Imprime el ultimo elemento del alfabeto
+		System.out.print(alfabetoComp[aux]);
 		System.out.print("\n" + "noEst:" + noEst + "\n" + "estFin:");
 		int[] auxFin = getEstFin();
 		// Imprime todos los elementos de los estados finales menos el ultimo, para que
@@ -121,7 +138,7 @@ public class AFD {
 		System.out.print(auxFin[aux] + "\n");
 
 		System.out.println("Tabla de transicion: ");
-		int[][] mat = getTabla();
+		Transicion[][] mat = getTabla();
 		// Recorre la matriz para imprimirla
 		for (int i = 0; i < estados; i++) {
 			for (int k = 0; k < alfabeto.length; k++) {
@@ -134,17 +151,18 @@ public class AFD {
 	public void llenarAFD(String txt) {
 		try (BufferedReader br = new BufferedReader(new FileReader(txt))) {
 
-			File archivo = new File(txt);
-			String nombreArchivo = archivo.getName();
-			String regex = "^\\d+";
-			nombreArchivo = nombreArchivo.replaceFirst(regex, "");
-			int pos = nombreArchivo.lastIndexOf(".");
-			if (pos > 0) {
-				nombreArchivo = nombreArchivo.substring(0, pos);
-			}
+			// File archivo = new File(txt);
+			// String nombreArchivo = archivo.getName();
+			// String regex = "^\\d+";
+			// nombreArchivo = nombreArchivo.replaceFirst(regex, "");
+			// int pos = nombreArchivo.lastIndexOf(".");
+			// if (pos > 0) {
+			// 	nombreArchivo = nombreArchivo.substring(0, pos);
+			// }
 
-			setNom(nombreArchivo);
-			setDir(txt);
+			// setNom(nombreArchivo);
+			// setDir(txt);
+
 			// LECTURA DE LA PRIMERA LINEA DEL TXT
 			String line;
 			// Lee explicitamente la primera linea del .txt y separa los carácteres por
@@ -327,7 +345,7 @@ public class AFD {
 		// se encuentra en el alfabeto
 		int auxContador = 0;
 		// Es la matriz (tabla de transiciones)
-		int[][] mat = getTabla();
+		Transicion[][] mat = getTabla();
 
 		// Para facilitar el uso de nuestro alfabeto se convierte de String a Char
 		// aqui creamos el arreglo alfabetoChar
