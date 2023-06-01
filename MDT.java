@@ -505,11 +505,60 @@ public class MDT {
 				br.close();
 				return;
 			}
-			auxSimbolosCinta.clear();
 			br.close();
 			setTabla(matriz);
 		} catch (IOException e) {
 			e.printStackTrace();
+		}
+	}
+
+	//TODO: Falta validar que el caracter de la cadena pertenezca a los simbolos de la cinta
+	//Metodo para mover y hacer los cambios a la cadena, segun la maquina de turing
+	public void validar(Lista lista) {
+
+		Transicion[][] matriz = getTabla();
+		int estado;
+		char escribir;
+		Transicion.Movimiento movimiento;
+		lista.moverDerecha();
+
+		int estadoActual = 0;
+		char caracterActual;
+
+		//Etiqueta que funciona para romper el ciclo
+		ciclo:
+		for (int i = 0; i < matriz.length; i++) {
+			caracterActual = lista.obtenerCaracter();
+			for (int j = 0; j < matriz[i].length; j++) {
+				if (caracterActual == this.alfabeto[j]) {
+					estado = matriz[estadoActual][j].getEstado();
+					escribir = matriz[estadoActual][j].getEscribir();
+					movimiento = matriz[estadoActual][j].getMovimiento();
+	
+					if(movimiento == Transicion.Movimiento.S) {
+						break ciclo;
+					}
+					lista.escribir(escribir);
+					lista.mover(movimiento);
+					estadoActual = estado;
+					break;
+				}
+			}
+		}
+
+		for (int i = 0; i < this.estadosFinales.length; i++) {
+			if (estadoActual != this.estadosFinales[i]) {
+				System.out.println("La cadena NO termino en un estado de aceptacion");
+				System.out.println("La cadena resultante es: ");
+				lista.imprimir();
+				System.out.println("El estado en el que termino fue: " + estadoActual);
+				return;
+			} else {
+				System.out.println("La cadena termino en un estado de aceptacion");
+				System.out.println("La cadena resultante es: ");
+				lista.imprimir();
+				System.out.println("El estado en el que termino fue: " + estadoActual);
+			}
 		}
 	}
 }

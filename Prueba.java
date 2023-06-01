@@ -1,4 +1,4 @@
-//import java.util.Scanner;
+import java.util.Scanner;
 import java.io.File;
 
 public class Prueba {
@@ -46,11 +46,29 @@ public class Prueba {
     
     // // lista.imprimir();
     // sc.close();
+    Scanner sc = new Scanner(System.in);
 
     String rutaComplemento = "MT_complemento.txt";
     File archivoComplemento = new File(rutaComplemento);
 
+    Lista listaDoble = new Lista();
+
+
     MDT mdt = new MDT(archivoComplemento);
-    mdt.imprimirMDT();
+    // mdt.imprimirMDT();
+
+    System.out.println("Escriba una cadena: ");
+    String cadena = sc.nextLine();
+
+    listaDoble.escribirCadena(cadena);
+
+    mdt.validar(listaDoble);
+    
+    listaDoble.imprimir();
+    sc.close();
+
+
+    
+    
     }
 }
