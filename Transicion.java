@@ -9,7 +9,9 @@ public class Transicion {
         S //Stop (detener)
     }
 
-    public Transicion (){}
+    public String toString() {
+        return "{" + estado + "," + escribir + "," + movimiento.toString() + "}";
+    }
 
     public Transicion(int estado, char escribir, Movimiento movimiento) {
         this.estado = estado;
@@ -40,5 +42,4 @@ public class Transicion {
     public void setMovimiento(Movimiento movimiento) {
         this.movimiento = movimiento;
     }
-
 }

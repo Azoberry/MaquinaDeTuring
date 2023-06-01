@@ -11,7 +11,7 @@ public class Lista {
     private Nodo ultimo;
 
     // El constructor Lista() inicializa los atributos raiz y ultimo a null.
-    // La variable raiz representa el primer nodo de la lista y ultimo representa
+    // El nodo raiz representa el primer nodo de la lista y ultimo representa
     // el último nodo de la lista. Al inicializarlos en null, se está indicando que
     // la lista no tiene ningún nodo y por lo tanto está vacía.
     public Lista() {
@@ -35,14 +35,12 @@ public class Lista {
         this.ultimo = ultimo;
     }
 
-    // El método empty() devuelve true si la lista está vacía
+    // El metodo empty() devuelve true si la lista está vacía
     public boolean empty() {
         return raiz == null;
     }
     
-    // El método insertar crea un nuevo nodo con los parámetros de entrada patron y
-    // nombre,
-    // y lo agrega al final de la lista.
+    //Metodo para insertar un caracter en el nodo
     public void insertar(char caracter) {
 
         Nodo nuevo = new Nodo(caracter);
@@ -83,6 +81,7 @@ public class Lista {
         }
     }
 
+    //Para imprimir la lista (son para las pruebas)
     public void imprimir() {
         Nodo aux = raiz;
         if (!empty()) {

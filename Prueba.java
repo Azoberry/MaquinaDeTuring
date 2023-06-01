@@ -1,11 +1,11 @@
-import java.util.Scanner;
+//import java.util.Scanner;
 import java.io.File;
 
 public class Prueba {
     public static void main(String[] args) {
         
     //     Transicion transicion = new Transicion();
-        Scanner sc = new Scanner(System.in);
+    //     Scanner sc = new Scanner(System.in);
 
     //     System.out.println("Ingrese el estado: ");
     //     int estado = sc.nextInt();
@@ -44,14 +44,13 @@ public class Prueba {
     //     lista.insertar2();
     // }
     
-    // lista.imprimir();
-    sc.close();
+    // // lista.imprimir();
+    // sc.close();
 
     String rutaComplemento = "MT_complemento.txt";
     File archivoComplemento = new File(rutaComplemento);
 
     MDT mdt = new MDT(archivoComplemento);
     mdt.imprimirMDT();
-
     }
 }
