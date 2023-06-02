@@ -418,7 +418,7 @@ public class MDT {
 	public void llenarTabla (File archivo) {
 		try (BufferedReader br = new BufferedReader(new FileReader(archivo))) {
 			
-			//Valida si el alfabeto esta vacio o no
+			//Valida si la tabla ya fue evaluada
 			if (tablaValida == false) {
 				System.err.println("ERROR: El tamano de la tabla no es correcto, favor de corregirla");
 					br.close();
@@ -512,9 +512,14 @@ public class MDT {
 		}
 	}
 
-	//TODO: Falta validar que el caracter de la cadena pertenezca a los simbolos de la cinta
 	//Metodo para mover y hacer los cambios a la cadena, segun la maquina de turing
 	public void validar(Lista lista) {
+
+		//Valida si la tabla esta vacia
+		if (this.tabla == null) {
+			System.err.println("ERROR: La tabla esta vacia");
+				return;
+		}
 
 		Transicion[][] matriz = getTabla();
 		int estado;
@@ -523,17 +528,18 @@ public class MDT {
 
 		int estadoActual = 0;
 		char caracterActual;
+		boolean encontrado;
 
 		//Etiqueta que funciona para romper el ciclo
 		ciclo:
 		while (true) {
 			caracterActual = lista.obtenerCaracter();
+			encontrado = false;
 			for (int j = 0; j < this.simbolosCinta.length; j++) {
 				if (caracterActual == this.simbolosCinta[j]) {
 					estado = matriz[estadoActual][j].getEstado();
 					escribir = matriz[estadoActual][j].getEscribir();
 					movimiento = matriz[estadoActual][j].getMovimiento();
-	
 					estadoActual = estado;
 					lista.escribir(escribir);
 					lista.mover(movimiento);
@@ -541,8 +547,13 @@ public class MDT {
 					if(movimiento == Transicion.Movimiento.S) {
 						break ciclo;
 					}
+					encontrado = true;
 					break;
 				}
+			}
+			if (!encontrado) {
+				System.err.println("El caracter: " + "\"" + caracterActual + "\"" + " no se encuentra en los simbolos de la cinta");
+				return;
 			}
 		}
 
