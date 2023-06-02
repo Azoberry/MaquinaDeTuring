@@ -520,27 +520,27 @@ public class MDT {
 		int estado;
 		char escribir;
 		Transicion.Movimiento movimiento;
-		lista.moverDerecha();
 
 		int estadoActual = 0;
 		char caracterActual;
 
 		//Etiqueta que funciona para romper el ciclo
 		ciclo:
-		for (int i = 0; i < matriz.length; i++) {
+		while (true) {
 			caracterActual = lista.obtenerCaracter();
-			for (int j = 0; j < matriz[i].length; j++) {
-				if (caracterActual == this.alfabeto[j]) {
+			for (int j = 0; j < this.simbolosCinta.length; j++) {
+				if (caracterActual == this.simbolosCinta[j]) {
 					estado = matriz[estadoActual][j].getEstado();
 					escribir = matriz[estadoActual][j].getEscribir();
 					movimiento = matriz[estadoActual][j].getMovimiento();
 	
+					estadoActual = estado;
+					lista.escribir(escribir);
+					lista.mover(movimiento);
+
 					if(movimiento == Transicion.Movimiento.S) {
 						break ciclo;
 					}
-					lista.escribir(escribir);
-					lista.mover(movimiento);
-					estadoActual = estado;
 					break;
 				}
 			}
@@ -551,13 +551,13 @@ public class MDT {
 				System.out.println("La cadena NO termino en un estado de aceptacion");
 				System.out.println("La cadena resultante es: ");
 				lista.imprimir();
-				System.out.println("El estado en el que termino fue: " + estadoActual);
+				System.out.println("\nEl estado en el que termino fue: " + estadoActual);
 				return;
 			} else {
 				System.out.println("La cadena termino en un estado de aceptacion");
 				System.out.println("La cadena resultante es: ");
 				lista.imprimir();
-				System.out.println("El estado en el que termino fue: " + estadoActual);
+				System.out.println("\nEl estado en el que termino fue: " + estadoActual);
 			}
 		}
 	}

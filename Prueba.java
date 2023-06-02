@@ -62,9 +62,11 @@ public class Prueba {
 
     listaDoble.escribirCadena(cadena);
 
+    //listaDoble.imprimirCompleta();
+
     mdt.validar(listaDoble);
     
-    listaDoble.imprimir();
+    
     sc.close();
 
 
