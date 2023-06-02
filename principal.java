@@ -3,10 +3,10 @@ public class principal {
     public static void main(String[] args) {
         // La clase main se encarga de llamar a los metodos llenar y leer, los cuales
         // cargan los el lenguaje y la lista de tokens para su validación
-        Lista l = new Lista();      
+        //Lista l = new Lista();      
 
-        l.llenar("C:/Users/Usuario/Downloads/Equipo 7 - ProyectoUnidad3/AFDParaLeerElCodigo"); //Recibe la direccion de la carpeta
-        l.leer("C:/Users/Usuario/Downloads/Equipo 7 - ProyectoUnidad3/codigo.txt"); //Recibe la direccion del codigo a leer
+        //l.llenar("C:/Users/Usuario/Downloads/Equipo 7 - ProyectoUnidad3/AFDParaLeerElCodigo"); //Recibe la direccion de la carpeta
+        //l.leer("C:/Users/Usuario/Downloads/Equipo 7 - ProyectoUnidad3/codigo.txt"); //Recibe la direccion del codigo a leer
 
         //Ejemplos de validaciones con otros AFD's
         // AFD verfeho = new AFD("C:/Users/Usuario/Downloads/Equipo 7 - ProyectoUnidad3/AFDParaLeerElCodigo/64tkVarFecha-Hora.txt");

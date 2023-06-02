@@ -1,50 +1,47 @@
 import java.util.Scanner;
+import java.io.File;
 
 public class Prueba {
     public static void main(String[] args) {
-        
-    //     Transicion transicion = new Transicion();
-        Scanner sc = new Scanner(System.in);
 
-    //     System.out.println("Ingrese el estado: ");
-    //     int estado = sc.nextInt();
-    //     sc.nextLine();
+    Scanner sc = new Scanner(System.in);
 
-    //     System.out.println("Ingrese el caracter a escribir: ");
-    //     char escribir;
+    //===MAQUINA DE TURING PARA EL COMPLEMENTO===
+    // String rutaComplemento = "MT_complemento.txt";
+    // File archivoComplemento = new File(rutaComplemento);
 
-    //     try {
-    //         escribir = sc.nextLine().charAt(0);
-    //     } catch (Exception e) {
-    //         escribir = ' '; // O asignar otro valor por defecto en caso de entrada inválida
-    //     }
+    // MDT mdt1 = new MDT(archivoComplemento);
+    // //mdt1.imprimirMDT();
 
-    //     System.out.println("Ingrese el movimiento: ");
-    //     String movimiento = sc.nextLine();
+    // Lista listaDoble1 = new Lista();
 
-    //     sc.close();
+    // System.out.println("Escriba una cadena: ");
+    // String cadena1 = sc.nextLine();
 
-    //     transicion.setEstado(estado);
-    //     transicion.setEscribir(escribir);
-    //     try {
-    //         //valueOf convierte el valor de "movimiento" en un valor valido para el enum
-    //         Transicion.Movimiento movimientoEnum = Transicion.Movimiento.valueOf(movimiento.toUpperCase());
-    //         transicion.setMovimiento(movimientoEnum);
-    //     } catch (IllegalArgumentException e) {
-    //         System.out.println("Movimiento invalido");
-    //     }
+    // listaDoble1.escribirCadena(cadena1);
 
-    //     System.out.println("Estado: " + transicion.getEstado());
-    //     System.out.println("Escribir: " + transicion.getEscribir());
-    //     System.out.println("Movimiento: " + transicion.getMovimiento());
+    // //listaDoble1.imprimirCompleta();
 
-    Lista lista = new Lista();
-    for(int i = 0; i < 10; i++) {
-        lista.insertar2();
-    }
+    // mdt1.validar(listaDoble1);
+
+    //===MAQUINA DE TURING PARA LOS PARES DE 0 Y 1===
+    String ruta01Par = "MT_01Par.txt";
+    File archivo01Par = new File(ruta01Par);
+
+    MDT mdt2 = new MDT(archivo01Par);
+    //mdt2.imprimirMDT();
+
+    Lista listaDoble2 = new Lista();
+
+    System.out.println("Escriba una cadena: ");
+    String cadena2 = sc.nextLine();
+
+    listaDoble2.escribirCadena(cadena2);
+
+    //listaDoble2.imprimirCompleta();
+
+    mdt2.validar(listaDoble2);
     
-    lista.imprimir();
     sc.close();
-
     }
 }
